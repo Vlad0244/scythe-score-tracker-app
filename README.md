@@ -1,0 +1,1 @@
+Current version of CRUD app. Only capable of reading the db for now
