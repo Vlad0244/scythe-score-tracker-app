@@ -1,7 +1,7 @@
 import {ReactElement, useEffect, useMemo, useState} from "react";
 import PlayerList from "./PlayerList";
-import {GameInterface} from "../util/interfaces";
-import {isOem} from "../util/util";
+import {GameInterface} from "../utils/interfaces";
+import {isOem} from "../utils/util";
 import {Link} from "react-router-dom";
 interface SessionProps {
      sessionId: number;

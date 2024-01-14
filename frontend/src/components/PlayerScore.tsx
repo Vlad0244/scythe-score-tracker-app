@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {GameViewInterface} from "../util/interfaces";
-import {calculateTotalPoints} from "../util/util";
+import {GameViewInterface} from "../utils/interfaces";
+import {calculateTotalPoints} from "../utils/util";
 
 interface PlayerProps {
     gameId: number;

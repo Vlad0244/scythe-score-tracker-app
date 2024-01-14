@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {GameViewInterface} from "../util/interfaces";
+import {GameViewInterface} from "../utils/interfaces";
 import PlayerScore from "../components/PlayerScore";
 import {useParams} from "react-router-dom";
 

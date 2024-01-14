@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import SessionList from "./SessionList";
-import {GmInterface} from "../util/interfaces";
+import {GmInterface} from "../utils/interfaces";
 
 
 function Main() {
