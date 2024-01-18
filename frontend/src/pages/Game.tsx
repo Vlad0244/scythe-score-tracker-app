@@ -14,7 +14,7 @@ function Game() {
     }, [id]);
 
     if (!gameData || gameData.length === 0) {
-        return <div>Loading...</div>; // You can replace this with a loading indicator or other content
+        return <div>Loading...</div>;
     }
     console.log(gameData[0])
     return (

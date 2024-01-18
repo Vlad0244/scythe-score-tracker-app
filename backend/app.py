@@ -49,11 +49,7 @@ def get_sessions_list(gm_id):
 @app.route('/sessionsList/<int:session_id>')
 def get_game_ids(session_id):
     """
-    queries the db to get the games based on given session id.
-    ought to query a view that tells the general rules, (airships, tesla, etc.)
-    placements, factions/mats, total points of the game.
-    then when clicking on an individual game, it gets the full in-depth info of that game
-    and everyone's individual points accrued from what sources.
+    gets games in a given session.
     """
     with psycopg2.connect(**connection_params) as conn:
         with conn.cursor() as cur:
@@ -71,11 +67,7 @@ def get_game_ids(session_id):
 @app.route('/game/<int:game_id>')
 def get_all_game_info(game_id):
     """
-    queries the db to get the games based on given session id.
-    ought to query a view that tells the general rules, (airships, tesla, etc.)
-    placements, factions/mats, total points of the game.
-    then when clicking on an individual game, it gets the full in-depth info of that game
-    and everyone's individual points accrued from what sources.
+    gets players in a given game. this value is received when a game is clicked on.
     """
     with psycopg2.connect(**connection_params) as conn:
         with conn.cursor() as cur:
@@ -87,17 +79,15 @@ def get_all_game_info(game_id):
                         )
             game_info_list = cur.fetchall()
     games_info_data = game_info_view_data(game_info_list)
+
     return jsonify(games_info_data)
 
 
 @app.route('/playerList/<int:game_id>')
 def get_players_in_game_info(game_id):
     """
-    queries the db to get the games based on given session id.
-    ought to query a view that tells the general rules, (airships, tesla, etc.)
-    placements, factions/mats, total points of the game.
-    then when clicking on an individual game, it gets the full in-depth info of that game
-    and everyone's individual points accrued from what sources.
+    gets all players in a given game and their scores. Used when getting info on session list
+    for shortened scores and game data.
     """
     with psycopg2.connect(**connection_params) as conn:
         with conn.cursor() as cur:
@@ -109,15 +99,13 @@ def get_players_in_game_info(game_id):
                         )
             games_list = cur.fetchall()
     game_data = game_info_view_data(games_list)
-    print('printing game data')
-    pprint(game_data)
     return jsonify(game_data)
 
 
 @app.route('/player/<int:game_id>/<int:player_id>')
 def get_all_player_info(game_id, player_id):
     """
-    queries the db to get the player info in a given game game_id
+    queries the db to get the player scoring info in a given game game_id
     """
     with psycopg2.connect(**connection_params) as conn:
         with conn.cursor() as cur:
@@ -129,8 +117,6 @@ def get_all_player_info(game_id, player_id):
                         )
             games_list = cur.fetchall()
     game_data = game_info_view_data(games_list)
-    print('printing player data')
-    pprint(game_data)
     return jsonify(game_data)
 
 
