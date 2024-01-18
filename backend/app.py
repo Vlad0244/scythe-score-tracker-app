@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from flask import Flask, jsonify
 import psycopg2
 from dotenv import dotenv_values
@@ -27,7 +25,6 @@ def get_gm(gm_id):
                         )
             test = cur.fetchall()
     gms = gm_table_data(test)
-    print("my log:", gms)
     return jsonify(gms)
 
 
@@ -79,7 +76,6 @@ def get_all_game_info(game_id):
                         )
             game_info_list = cur.fetchall()
     games_info_data = game_info_view_data(game_info_list)
-
     return jsonify(games_info_data)
 
 
