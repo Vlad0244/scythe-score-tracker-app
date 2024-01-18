@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {GameViewInterface} from "../util/interfaces";
+import {GameViewInterface} from "../utils/interfaces";
 import PlayerScore from "../components/PlayerScore";
 import {useParams} from "react-router-dom";
 
@@ -14,7 +14,7 @@ function Game() {
     }, [id]);
 
     if (!gameData || gameData.length === 0) {
-        return <div>Loading...</div>; // You can replace this with a loading indicator or other content
+        return <div>Loading...</div>;
     }
     console.log(gameData[0])
     return (

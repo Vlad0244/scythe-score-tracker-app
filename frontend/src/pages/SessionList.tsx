@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import Session from "../components/Session";
-import {SessionListInterface} from "../util/interfaces";
+import {SessionListInterface} from "../utils/interfaces";
 
 interface GmProps {
     gmId: number;
