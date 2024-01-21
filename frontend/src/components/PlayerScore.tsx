@@ -21,17 +21,31 @@ function PlayerScore({gameId, playerId}: PlayerProps) {
             {
                 playerScoreData.map(
                     pscore => (
-                        <div key={pscore.player_id}>
-                            <p className="font-extrabold text-2xl">Name: {pscore.name}</p>
-                            <p>Faction: {pscore.faction}</p>
-                            <p>Player Mat: {pscore.mat}</p>
-                            <p className="font-bold">Total Points: {calculateTotalPoints(pscore)}</p>
-                            <p>pop bracket: {pscore.popularity_bracket + 1}</p>
-                            <p>stars: {pscore.star_count}</p>
-                            <p>coins: {pscore.currency}</p>
-                            <p>land: {pscore.land_count}</p>
-                            <p>resources: {pscore.total_resources_count}</p>
-                            <p>bonus points: {pscore.bonus_points}</p>
+                        <div key={pscore.player_id} className="grid bg-dark_green border p-0.5 rounded-md shadow-md grid-cols-2">
+                            <div>
+                                <div className="bg-gray_green p-1 m-0.5 text-2xl">Name</div>
+                                <div className="bg-gray_green p-1 m-0.5">Faction</div>
+                                <div className="bg-gray_green p-1 m-0.5">Player Mat</div>
+                                <div className="bg-gray_green p-1 m-0.5 text-2xl">Total Points</div>
+                                <div className="bg-gray_green p-1 m-0.5">Popularity Bracket</div>
+                                <div className="bg-gray_green p-1 m-0.5">Stars</div>
+                                <div className="bg-gray_green p-1 m-0.5">Coins</div>
+                                <div className="bg-gray_green p-1 m-0.5">Land</div>
+                                <div className="bg-gray_green p-1 m-0.5">Resources</div>
+                                <div className="bg-gray_green p-1 m-0.5">Bonus Points</div>
+                            </div>
+                            <div>
+                                <div className="bg-gray_green p-1 m-0.5 text-2xl">{pscore.name}</div>
+                                <div className="bg-gray_green p-1 m-0.5">{pscore.faction}</div>
+                                <div className="bg-gray_green p-1 m-0.5">{pscore.mat}</div>
+                                <div className="bg-gray_green p-1 m-0.5 text-2xl">{calculateTotalPoints(pscore)}</div>
+                                <div className="bg-gray_green p-1 m-0.5">{pscore.popularity_bracket + 1}</div>
+                                <div className="bg-gray_green p-1 m-0.5">{pscore.star_count}</div>
+                                <div className="bg-gray_green p-1 m-0.5">{pscore.currency}</div>
+                                <div className="bg-gray_green p-1 m-0.5">{pscore.land_count}</div>
+                                <div className="bg-gray_green p-1 m-0.5">{pscore.total_resources_count}</div>
+                                <div className="bg-gray_green p-1 m-0.5">{pscore.bonus_points}</div>
+                            </div>
                         </div>
                     )
                 )
