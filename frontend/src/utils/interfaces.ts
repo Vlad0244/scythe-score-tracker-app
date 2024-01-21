@@ -37,3 +37,7 @@ export interface GameViewInterface {
     bonus_points: number;
 }
 
+export interface GameTableAndGameViewInterface {
+    game_info: GameInterface;
+    game_view_info: GameViewInterface[];
+}

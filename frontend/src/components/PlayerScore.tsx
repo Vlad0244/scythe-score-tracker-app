@@ -17,40 +17,27 @@ function PlayerScore({gameId, playerId}: PlayerProps) {
             .catch((error) => console.error('Error fetching player data:', error));
     }, [gameId, playerId]);
     return (
-        <div>
+            <tbody>
+
             {
                 playerScoreData.map(
                     pscore => (
-                        <div key={pscore.player_id} className="grid bg-dark_green border p-0.5 rounded-md shadow-md grid-cols-2">
-                            <div>
-                                <div className="bg-gray_green p-1 m-0.5 text-2xl">Name</div>
-                                <div className="bg-gray_green p-1 m-0.5">Faction</div>
-                                <div className="bg-gray_green p-1 m-0.5">Player Mat</div>
-                                <div className="bg-gray_green p-1 m-0.5 text-2xl">Total Points</div>
-                                <div className="bg-gray_green p-1 m-0.5">Popularity Bracket</div>
-                                <div className="bg-gray_green p-1 m-0.5">Stars</div>
-                                <div className="bg-gray_green p-1 m-0.5">Coins</div>
-                                <div className="bg-gray_green p-1 m-0.5">Land</div>
-                                <div className="bg-gray_green p-1 m-0.5">Resources</div>
-                                <div className="bg-gray_green p-1 m-0.5">Bonus Points</div>
-                            </div>
-                            <div>
-                                <div className="bg-gray_green p-1 m-0.5 text-2xl">{pscore.name}</div>
-                                <div className="bg-gray_green p-1 m-0.5">{pscore.faction}</div>
-                                <div className="bg-gray_green p-1 m-0.5">{pscore.mat}</div>
-                                <div className="bg-gray_green p-1 m-0.5 text-2xl">{calculateTotalPoints(pscore)}</div>
-                                <div className="bg-gray_green p-1 m-0.5">{pscore.popularity_bracket + 1}</div>
-                                <div className="bg-gray_green p-1 m-0.5">{pscore.star_count}</div>
-                                <div className="bg-gray_green p-1 m-0.5">{pscore.currency}</div>
-                                <div className="bg-gray_green p-1 m-0.5">{pscore.land_count}</div>
-                                <div className="bg-gray_green p-1 m-0.5">{pscore.total_resources_count}</div>
-                                <div className="bg-gray_green p-1 m-0.5">{pscore.bonus_points}</div>
-                            </div>
-                        </div>
+                        <tr key={pscore.player_id}>
+                            <td>{pscore.name}</td>
+                            <td>{pscore.faction}</td>
+                            <td>{pscore.mat}</td>
+                            <td>{pscore.popularity_bracket + 1}</td>
+                            <td>{pscore.star_count}</td>
+                            <td>{pscore.currency}</td>
+                            <td>{pscore.land_count}</td>
+                            <td>{pscore.total_resources_count}</td>
+                            <td>{pscore.bonus_points}</td>
+                            <td>{calculateTotalPoints(pscore)}</td>
+                        </tr>
                     )
                 )
             }
-        </div>
+            </tbody>
     );
 }
 

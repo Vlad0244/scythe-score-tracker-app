@@ -17,7 +17,7 @@ function Main() {
 
     return (
 
-        <div className="bg-light_gray_green text-green_black">
+        <div>
             THIS IS GM INFORMATION
             {
                 gmData.map(

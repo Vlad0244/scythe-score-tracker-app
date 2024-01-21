@@ -24,7 +24,7 @@ def get_gm(gm_id):
                         (gm_id,)
                         )
             test = cur.fetchall()
-    gms = gm_table_data(test)
+    gms = process_gm_table_data(test)
     return jsonify(gms)
 
 
@@ -39,7 +39,7 @@ def get_sessions_list(gm_id):
 
                         )
             sessions_list = cur.fetchall()
-    sessions_list = session_table_data(sessions_list)
+    sessions_list = process_session_table_data(sessions_list)
     return jsonify(sessions_list)
 
 
@@ -57,7 +57,7 @@ def get_game_ids(session_id):
                         (session_id,)
                         )
             games_list = cur.fetchall()
-    games_list_data = game_table_data(games_list)
+    games_list_data = process_game_table_data(games_list)
     return jsonify(games_list_data)
 
 
@@ -74,8 +74,21 @@ def get_all_game_info(game_id):
             """,
                         (game_id,)
                         )
-            game_info_list = cur.fetchall()
-    games_info_data = game_info_view_data(game_info_list)
+            game_and_players_info_list = cur.fetchall()
+            cur.execute("""
+                SELECT * FROM game WHERE game_id = %s;
+            """,
+                        (game_id,)
+                        )
+            current_game_info = cur.fetchall()
+
+    games_info_data = process_game_info_view_data(game_and_players_info_list)
+    current_game_data = process_game_table_data(current_game_info)
+    games_info_data = {
+        "game_info": current_game_data[0],
+        "game_view_info": games_info_data
+    }
+    print(games_info_data)
     return jsonify(games_info_data)
 
 
@@ -94,7 +107,7 @@ def get_players_in_game_info(game_id):
                         (game_id,)
                         )
             games_list = cur.fetchall()
-    game_data = game_info_view_data(games_list)
+    game_data = process_game_info_view_data(games_list)
     return jsonify(game_data)
 
 
@@ -112,7 +125,7 @@ def get_all_player_info(game_id, player_id):
                         (game_id, player_id,)
                         )
             games_list = cur.fetchall()
-    game_data = game_info_view_data(games_list)
+    game_data = process_game_info_view_data(games_list)
     return jsonify(game_data)
 
 
@@ -123,7 +136,7 @@ a list[] of hashmaps{}
 """
 
 
-def game_table_data(rows: list) -> list:
+def process_game_table_data(rows: list) -> list:
     ids = []
     for row in rows:
         ids.append({
@@ -137,7 +150,7 @@ def game_table_data(rows: list) -> list:
     return ids
 
 
-def gm_table_data(rows: list) -> list:
+def process_gm_table_data(rows: list) -> list:
     gms = []
     for row in rows:
         gms.append({
@@ -148,7 +161,7 @@ def gm_table_data(rows: list) -> list:
     return gms
 
 
-def session_table_data(rows: list) -> list:
+def process_session_table_data(rows: list) -> list:
     sessions_list = []
     for row in rows:
         sessions_list.append(
@@ -160,7 +173,7 @@ def session_table_data(rows: list) -> list:
     return sessions_list
 
 
-def game_info_view_data(rows: list) -> list:
+def process_game_info_view_data(rows: list) -> list:
     games_list_data = []
     for row in rows:
         games_list_data.append(

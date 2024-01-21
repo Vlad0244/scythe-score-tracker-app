@@ -19,28 +19,31 @@ function PlayerList({gameId}: PlayerListProps) {
 
     // TO DO sort the players by score
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 md:w-3/5 gap-0.5 text-dark_green font-extrabold overflow-x-auto">
-
-            {
-                gameData.map(
-                    (game_data, key) => (
-                            <div key={key} className="grid bg-dark_green border p-0.5 rounded-md shadow-md grid-cols-2">
-                                <div>
-                                    <div className="bg-gray_green p-1 m-0.5">Player Name</div>
-                                    <div className="bg-gray_green p-1 m-0.5">Faction</div>
-                                    <div className="bg-gray_green p-1 m-0.5">Mat</div>
-                                    <div className="bg-gray_green p-1 m-0.5">Total Points</div>
-                                </div>
-                                <div>
-                                    <div className="bg-gray_green p-1 m-0.5">{game_data.name}</div>
-                                    <div className="bg-gray_green p-1 m-0.5">{game_data.faction}</div>
-                                    <div className="bg-gray_green p-1 m-0.5">{game_data.mat}</div>
-                                    <div className="bg-gray_green p-1 m-0.5">{calculateTotalPoints(game_data)}</div>
-                                </div>
-                            </div>
+        <div className="md:w-1/2 w-full overflow-auto">
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Faction</th>
+                        <th>Mat</th>
+                        <th>Total Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                    gameData.map(
+                        (game_data, key) => (
+                            <tr key={key}>
+                                <td>{game_data.name}</td>
+                                <td>{game_data.faction}</td>
+                                <td>{game_data.mat}</td>
+                                <td>{calculateTotalPoints(game_data)}</td>
+                            </tr>
                     )
                 )
             }
+                </tbody>
+            </table>
         </div>
     )
 }
